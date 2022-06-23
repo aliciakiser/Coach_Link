@@ -24,12 +24,14 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -75,14 +77,8 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: 'Enter secure password'),
               ),
             ),
-            TextButton(
-              onPressed: () {
-                //TODO FORGOT PASSWORD SCREEN GOES HERE
-              },
-              child: const Text(
-                'Forgot Password',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
-              ),
+            const SizedBox(
+              height: 30,
             ),
             Container(
               height: 50,
@@ -102,6 +98,15 @@ class _LoginPageState extends State<LoginPage> {
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                //TODO FORGOT PASSWORD SCREEN GOES HERE
+              },
+              child: const Text(
+                'Forgot Password',
+                style: TextStyle(color: Colors.blue, fontSize: 15),
               ),
             ),
             const SizedBox(
