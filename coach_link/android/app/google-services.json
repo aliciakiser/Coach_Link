@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "230240573376",
+    "firebase_url": "https://coach-link-staging-default-rtdb.firebaseio.com",
+    "project_id": "coach-link-staging",
+    "storage_bucket": "coach-link-staging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230240573376:android:6be399013b6ed5f1e2da25",
+        "android_client_info": {
+          "package_name": "com.example.coach_link"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "230240573376-6th4r8cn274qphtnobg367kk1jkuvu8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCpYOE3GDfXzDot4oXb1s5wi9JF44LwCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "230240573376-6th4r8cn274qphtnobg367kk1jkuvu8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
