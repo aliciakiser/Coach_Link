@@ -13,8 +13,7 @@ class StartPage extends StatefulWidget {
 class _StartPageState extends State<StartPage> {
   int _currentIndex = 0;
 
-  List<Widget> _bottomNavPages = []; // 底部导航栏各个可切换页面组
-
+  List<Widget> _bottomNavPages = [];
   @override
   void initState() {
     super.initState();
