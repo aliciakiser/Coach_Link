@@ -10,15 +10,23 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String _email = "";
+  String _password = "";
+
+  void loginAction() {
+    print("email: $_email");
+    print("password: $_password");
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController userNameController = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Login Page"),
+        title: const Text("User Login"),
       ),
       body: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
           children: <Widget>[
             Padding(
@@ -30,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Image.asset('assets/banner.jpeg')),
               ),
             ),
-            const Padding(
+            Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
@@ -38,19 +46,23 @@ class _LoginPageState extends State<LoginPage> {
                     border: OutlineInputBorder(),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
-                //controller: userNameController,
+                onChanged: (email) {
+                  this._email = email;
+                },
               ),
             ),
-            const Padding(
+            Padding(
               padding:
                   EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
               child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter secure password'),
-              ),
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                      hintText: 'Enter secure password'),
+                  onChanged: (password) {
+                    this._password = password;
+                  }),
             ),
             const SizedBox(
               height: 30,
@@ -61,7 +73,9 @@ class _LoginPageState extends State<LoginPage> {
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  loginAction();
+                },
                 child: const Text(
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 25),
@@ -83,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             const SizedBox(
-              height: 130,
+              height: 100,
             ),
             TextButton(
               onPressed: () {
