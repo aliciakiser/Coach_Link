@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   # add this line to your dependencies
   fluttertoast: ^8.0.9
+  firebase_core: ^1.18.0
+  firebase_auth: ^3.3.20
 
 dev_dependencies:
   flutter_test:

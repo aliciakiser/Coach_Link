@@ -8,6 +8,12 @@ class ResetPwdPage extends StatefulWidget {
 }
 
 class _ResetPwdPageState extends State<ResetPwdPage> {
+  String _email = "";
+
+  void _resetPwdAction() {
+    print("email: $_email");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +25,7 @@ class _ResetPwdPageState extends State<ResetPwdPage> {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 100),
-            const Padding(
+            Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
@@ -29,6 +35,9 @@ class _ResetPwdPageState extends State<ResetPwdPage> {
                         'Please Enter Email Associated With Your Account',
                     hintText: 'Enter valid email id as abc@gmail.com'),
                 //controller: userNameController,
+                onChanged: (email) {
+                  this._email = email;
+                },
               ),
             ),
             const SizedBox(
@@ -42,6 +51,7 @@ class _ResetPwdPageState extends State<ResetPwdPage> {
               child: TextButton(
                 onPressed: () {
                   Navigator.pop(context);
+                  _resetPwdAction();
                 },
                 child: const Text(
                   'Reset Password Via Email',

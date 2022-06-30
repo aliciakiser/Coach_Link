@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'newProfile.dart';
 import 'resetPassword.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,10 +15,26 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String _email = "";
   String _password = "";
+  bool _success = false;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void loginAction() {
-    print("email: $_email");
-    print("password: $_password");
+  void loginAction() async {
+    final UserCredential credential = (await _auth.signInWithEmailAndPassword(
+      email: _email,
+      password: _password,
+    ));
+    final User? user = credential.user;
+    if (user != null) {
+      setState(() {
+        _success = true;
+        print("Sign in success");
+      });
+    } else {
+      setState(() {
+        _success = false;
+        print("Sign in failed");
+      });
+    }
   }
 
   @override
