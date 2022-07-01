@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  User? user;
+  MyHomePage({Key? key, required this.title, User? user}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -15,11 +17,13 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  // ignore: no_logic_in_create_state
+  State<MyHomePage> createState() => _MyHomePageState(user: user);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  User? user;
+  _MyHomePageState({this.user});
 
   Widget _singlePostBody(int postID) {
     return Card(

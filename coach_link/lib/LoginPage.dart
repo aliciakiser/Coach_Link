@@ -1,6 +1,8 @@
+import 'package:coach_link/StartPage.dart';
 import 'package:flutter/material.dart';
 import 'newProfile.dart';
 import 'resetPassword.dart';
+import 'StartPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,22 +19,27 @@ class _LoginPageState extends State<LoginPage> {
   String _password = "";
   bool _success = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  User? user;
 
   void loginAction() async {
     final UserCredential credential = (await _auth.signInWithEmailAndPassword(
       email: _email,
       password: _password,
     ));
-    final User? user = credential.user;
-    if (user != null) {
-      setState(() {
-        _success = true;
-        print("Sign in success");
-      });
-    } else {
+    user = credential.user;
+    if (user == null) {
       setState(() {
         _success = false;
         print("Sign in failed");
+      });
+    } else {
+      setState(() {
+        _success = true;
+        print("Sign in success");
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => StartPage(user: user!)),
+            (route) => route == null);
       });
     }
   }
