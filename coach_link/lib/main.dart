@@ -1,6 +1,6 @@
-import 'package:coach_link/LoginPage.dart';
+import 'Views/LoginPage.dart';
 import 'package:flutter/material.dart';
-import 'StartPage.dart';
+import 'Views/StartPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

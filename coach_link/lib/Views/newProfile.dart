@@ -1,0 +1,204 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:coach_link/Model/UpdateUser.dart';
+
+class NewUserPage extends StatefulWidget {
+  const NewUserPage({Key? key}) : super(key: key);
+
+  @override
+  _NewUserPageState createState() => _NewUserPageState();
+}
+
+class _NewUserPageState extends State<NewUserPage> {
+  String _email = "";
+  String _firstName = "";
+  String _lastName = "";
+  String _password = "";
+  String _confirmPassword = "";
+  String _specialization = "";
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void newUserAction() async {
+    try {
+      final UserCredential credential =
+          (await _auth.createUserWithEmailAndPassword(
+        email: _email,
+        password: _password,
+      ));
+      final User? user = credential.user;
+      if (user != null) {
+        await UpdateUser(uid: user.uid)
+            .updateProfile(_firstName, _lastName, _email, _specialization);
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Successfully created account, please login."),
+        ));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Failed create account, please try again."),
+        ));
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Failed create account, please try again."),
+      ));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text("Reset Password"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            const SizedBox(height: 100),
+            // Row(
+            //   children: [
+            //     Padding(
+            //       padding: EdgeInsets.symmetric(horizontal: 15),
+            //       child: TextField(
+            //         decoration: InputDecoration(
+            //             border: OutlineInputBorder(),
+            //             labelText: 'Please Enter Your First Name',
+            //             hintText: 'Enter your first name'),
+            //         //controller: userNameController,
+            //         onChanged: (firstName) {
+            //           this._firstName = firstName;
+            //         },
+            //       ),
+            //     ),
+            //     Padding(
+            //       padding: EdgeInsets.symmetric(horizontal: 15),
+            //       child: TextField(
+            //         decoration: InputDecoration(
+            //             border: OutlineInputBorder(),
+            //             labelText: 'Please Enter Your Last Name',
+            //             hintText: 'Enter your last name'),
+            //         //controller: userNameController,
+            //         onChanged: (lastName) {
+            //           this._lastName = lastName;
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            const Text(
+              'Email',
+              textAlign: TextAlign.left,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Please Enter Email Address',
+                    hintText: 'Enter valid email id as abc@gmail.com'),
+                //controller: userNameController,
+                onChanged: (email) {
+                  this._email = email;
+                },
+              ),
+            ),
+            const Text(
+              'First Name',
+              textAlign: TextAlign.left,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Please Enter Your First Name',
+                    hintText: 'Please enter your first name'),
+                //controller: userNameController,
+                onChanged: (firstName) {
+                  this._firstName = firstName;
+                },
+              ),
+            ),
+            const Text(
+              'Last Name',
+              textAlign: TextAlign.left,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Please Enter Your Last Name',
+                    hintText: 'Please enter your last name'),
+                //controller: userNameController,
+                onChanged: (lastName) {
+                  this._lastName = lastName;
+                },
+              ),
+            ),
+            const Text(
+              'Specialization',
+              textAlign: TextAlign.left,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Please Enter Your Specialization',
+                    hintText: 'Please enter your specialization'),
+                //controller: userNameController,
+                onChanged: (specialization) {
+                  this._specialization = specialization;
+                },
+              ),
+            ),
+            const Text(
+              'Password',
+              textAlign: TextAlign.left,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Please Enter Your Password',
+                    hintText:
+                        'Please enter your password, it should more than 8 characters including at least one special character and one number'),
+                //controller: userNameController,
+                onChanged: (password) {
+                  this._password = password;
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              height: 50,
+              width: 250,
+              decoration: BoxDecoration(
+                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  newUserAction();
+                },
+                child: const Text(
+                  'Create Account',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 130,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

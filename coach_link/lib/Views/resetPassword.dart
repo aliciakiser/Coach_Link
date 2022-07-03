@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:coach_link/Model/PasswordReset.dart';
 
 class ResetPwdPage extends StatefulWidget {
   const ResetPwdPage({Key? key}) : super(key: key);
@@ -11,7 +12,18 @@ class _ResetPwdPageState extends State<ResetPwdPage> {
   String _email = "";
 
   void _resetPwdAction() {
-    print("email: $_email");
+    PasswordReset.resetPassword(_email).then((value) {
+      if (value) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Reset Link has been sent to your email"),
+        ));
+        Navigator.pop(context);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Reset password failed"),
+        ));
+      }
+    });
   }
 
   @override
@@ -50,7 +62,6 @@ class _ResetPwdPageState extends State<ResetPwdPage> {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
                   _resetPwdAction();
                 },
                 child: const Text(

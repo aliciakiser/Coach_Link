@@ -1,10 +1,9 @@
-import 'package:coach_link/StartPage.dart';
+import 'StartPage.dart';
 import 'package:flutter/material.dart';
 import 'newProfile.dart';
 import 'resetPassword.dart';
 import 'StartPage.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -22,11 +21,17 @@ class _LoginPageState extends State<LoginPage> {
   User? user;
 
   void loginAction() async {
-    final UserCredential credential = (await _auth.signInWithEmailAndPassword(
-      email: _email,
-      password: _password,
-    ));
-    user = credential.user;
+    try {
+      final UserCredential credential = (await _auth.signInWithEmailAndPassword(
+        email: _email,
+        password: _password,
+      ));
+      user = credential.user;
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Login failed. Please try again."),
+      ));
+    }
     if (user == null) {
       setState(() {
         _success = false;

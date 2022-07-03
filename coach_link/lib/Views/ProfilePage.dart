@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -13,7 +12,12 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   User? user;
+  String _name = "";
   _ProfilePageState({this.user});
+
+  // void _GetUserState() async {
+  //   _name = user?.displayName;
+  // }
 
   @override
   Widget build(BuildContext context) {
