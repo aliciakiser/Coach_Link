@@ -41,9 +41,10 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         _success = true;
         print("Sign in success");
+        print(user!.uid);
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => StartPage(user: user!)),
+            MaterialPageRoute(builder: (context) => StartPage(uid: user!.uid)),
             (route) => route == null);
       });
     }

@@ -7,27 +7,27 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class StartPage extends StatefulWidget {
-  User? user;
-  StartPage({Key? key, User? user}) : super(key: key);
+  String uid = "";
+  StartPage({Key? key, required this.uid}) : super(key: key);
 
   @override
   // ignore: no_logic_in_create_state
-  _StartPageState createState() => _StartPageState(user: user);
+  _StartPageState createState() => _StartPageState(uid: uid);
 }
 
 class _StartPageState extends State<StartPage> {
   int _currentIndex = 0;
   List<Widget> _bottomNavPages = [];
-  User? user;
+  String uid = "";
 
-  _StartPageState({this.user});
+  _StartPageState({required this.uid});
   @override
   void initState() {
     super.initState();
     _bottomNavPages
-      ..add(MyHomePage(title: "Home", user: this.user))
+      ..add(MyHomePage(title: "Home", uid: this.uid))
       ..add(const SearchPage())
-      ..add(ProfilePage(user: user));
+      ..add(ProfilePage(uid: this.uid));
   }
 
   @override

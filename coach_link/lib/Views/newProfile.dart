@@ -34,6 +34,7 @@ class _NewUserPageState extends State<NewUserPage> {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Successfully created account, please login."),
         ));
+        Navigator.pop(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Failed create account, please try again."),
@@ -43,6 +44,7 @@ class _NewUserPageState extends State<NewUserPage> {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Failed create account, please try again."),
       ));
+      print(e);
     }
   }
 
@@ -183,7 +185,6 @@ class _NewUserPageState extends State<NewUserPage> {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
                   newUserAction();
                 },
                 child: const Text(
