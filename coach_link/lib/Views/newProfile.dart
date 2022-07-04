@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:coach_link/Model/UpdateUser.dart';
 
@@ -34,7 +33,7 @@ class _NewUserPageState extends State<NewUserPage> {
       final User? user = credential.user;
       if (user != null) {
         await UpdateUser(uid: user.uid)
-            .updateProfile(_firstName, _lastName, _email, _specialization);
+            .newProfile(_firstName, _lastName, _email, _specialization);
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Successfully created account, please login."),
         ));
@@ -63,36 +62,6 @@ class _NewUserPageState extends State<NewUserPage> {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 100),
-            // Row(
-            //   children: [
-            //     Padding(
-            //       padding: EdgeInsets.symmetric(horizontal: 15),
-            //       child: TextField(
-            //         decoration: InputDecoration(
-            //             border: OutlineInputBorder(),
-            //             labelText: 'Please Enter Your First Name',
-            //             hintText: 'Enter your first name'),
-            //         //controller: userNameController,
-            //         onChanged: (firstName) {
-            //           this._firstName = firstName;
-            //         },
-            //       ),
-            //     ),
-            //     Padding(
-            //       padding: EdgeInsets.symmetric(horizontal: 15),
-            //       child: TextField(
-            //         decoration: InputDecoration(
-            //             border: OutlineInputBorder(),
-            //             labelText: 'Please Enter Your Last Name',
-            //             hintText: 'Enter your last name'),
-            //         //controller: userNameController,
-            //         onChanged: (lastName) {
-            //           this._lastName = lastName;
-            //         },
-            //       ),
-            //     ),
-            //   ],
-            // ),
             const Text(
               'Email',
               textAlign: TextAlign.left,

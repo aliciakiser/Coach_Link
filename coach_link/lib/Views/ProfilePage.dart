@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:coach_link/Model/UpdateUser.dart';
 import 'package:coach_link/Model/User.dart';
 import 'package:coach_link/Model/UpdateUser.dart';
+import 'UpdateProfilePage.dart';
 
 class ProfilePage extends StatefulWidget {
   String uid = "";
@@ -20,8 +21,13 @@ class _ProfilePageState extends State<ProfilePage> {
 
   _ProfilePageState({required this.uid});
 
+  @override
+  void initState() {
+    super.initState();
+    _GetUserState();
+  }
+
   Future<void> _GetUserState() async {
-    print(uid);
     _userProfile = UpdateUser(uid: uid);
     _coachUser = await _userProfile?.getCoach();
     if (mounted) setState(() {});
@@ -29,7 +35,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    _GetUserState();
     return Stack(
       children: [
         CustomScrollView(
@@ -37,6 +42,29 @@ class _ProfilePageState extends State<ProfilePage> {
             _getBannerWithAvatar(context),
             _getPersonalProfile(),
           ],
+        ),
+        Positioned(
+          top: 40,
+          left: 10,
+          child: TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) =>
+                      UpdateProfilePage(uid: uid),
+                ),
+              );
+            },
+            child: const Text(
+              "Update Profile",
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
         ),
       ],
     );
