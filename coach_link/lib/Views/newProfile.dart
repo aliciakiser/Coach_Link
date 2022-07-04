@@ -17,6 +17,10 @@ class _NewUserPageState extends State<NewUserPage> {
   String _password = "";
   String _confirmPassword = "";
   String _specialization = "";
+  ActionCodeSettings acs = ActionCodeSettings(
+    handleCodeInApp: true,
+    url: "package:coach_link/Web/index.html",
+  );
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 

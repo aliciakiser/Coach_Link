@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'SearchLandingPage.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -8,6 +9,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  String keyword = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +21,7 @@ class _SearchPageState extends State<SearchPage> {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 200),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
@@ -27,11 +29,23 @@ class _SearchPageState extends State<SearchPage> {
                     labelText: 'Please Enter Your Search',
                     hintText: 'Enter your search'),
                 //controller: userNameController,
+                onChanged: (keyword) {
+                  this.keyword = keyword;
+                },
               ),
             ),
             const SizedBox(height: 30),
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SearchLandingPage(
+                      keyword: keyword,
+                    ),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 onPrimary: Colors.black87,
                 primary: Colors.blue,

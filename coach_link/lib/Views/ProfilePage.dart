@@ -40,48 +40,6 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ],
     );
-    // body: Column(
-    //   children: [
-    //     SizedBox(
-    //       height: MediaQuery.of(context).size.height / 4,
-    //       child: Stack(
-    //         children: [
-    //           Container(
-    //             decoration: BoxDecoration(
-    //               image: DecorationImage(
-    //                 image: AssetImage("assets/banner.jpeg"),
-    //                 fit: BoxFit.cover,
-    //               ),
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //     Column(mainAxisAlignment: Alignment.topLeft, children: [
-    //       CircleAvatar(radius: 50, child: Text(_coachUser?.firstName ?? "")),
-    //       Text(
-    //         _coachUser?.firstName ?? "" + " " + (_coachUser?.lastName ?? ""),
-    //         textAlign: TextAlign.left,
-    //       ),
-    //       Text(
-    //         "Email: " + (_coachUser?.email ?? ""),
-    //         textAlign: TextAlign.left,
-    //       ),
-    //       Text(
-    //         "Phone: " + (_coachUser?.phoneNum ?? ""),
-    //         textAlign: TextAlign.left,
-    //       ),
-    //       Text(
-    //         "Address: " + (_coachUser?.location ?? ""),
-    //         textAlign: TextAlign.left,
-    //       ),
-    //       Text(
-    //         "Specialization: " + (_coachUser?.specialization ?? ""),
-    //         textAlign: TextAlign.left,
-    //       ),
-    //     ]),
-    //   ],
-    // ),
   }
 
   Widget _getBannerWithAvatar(BuildContext context) {
