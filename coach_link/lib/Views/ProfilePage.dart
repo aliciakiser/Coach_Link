@@ -68,7 +68,24 @@ class _ProfilePageState extends State<ProfilePage> {
             child: const Text(
               "Update Profile",
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 40,
+          right: 10,
+          child: TextButton(
+            onPressed: () {
+              signOut();
+            },
+            child: const Text(
+              "Sign Out",
+              style: TextStyle(
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -148,16 +165,6 @@ class _ProfilePageState extends State<ProfilePage> {
               "Specialization: " + (_coachUser?.specialization ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),
-            SizedBox(height: 2),
-            TextButton(
-                onPressed: () {
-                  signOut();
-                },
-                child: Text('Sign out',
-                    style: TextStyle(
-                        color: Colors.red,
-                        decoration: TextDecoration.underline))),
-
             SizedBox(height: 20),
             // Text(
             //   personalProfile.description,
