@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:coach_link/Model/UpdateUser.dart';
 import 'package:coach_link/Model/User.dart';
 import 'package:coach_link/Model/UpdateUser.dart';
-import 'package:coach_link/Model/SignOutUser.dart';
 import 'package:coach_link/Views/LoginPage.dart';
 import 'UpdateProfilePage.dart';
 
