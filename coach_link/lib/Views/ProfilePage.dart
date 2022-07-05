@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:coach_link/Model/UpdateUser.dart';
 import 'package:coach_link/Model/User.dart';
 import 'package:coach_link/Model/UpdateUser.dart';
+import 'package:coach_link/Model/SignOutUser.dart';
+import 'package:coach_link/Views/LoginPage.dart';
 import 'UpdateProfilePage.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -31,6 +33,14 @@ class _ProfilePageState extends State<ProfilePage> {
     _userProfile = UpdateUser(uid: uid);
     _coachUser = await _userProfile?.getCoach();
     if (mounted) setState(() {});
+  }
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  //signout function
+  signOut() async {
+    await auth.signOut();
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
   @override
@@ -139,6 +149,16 @@ class _ProfilePageState extends State<ProfilePage> {
               "Specialization: " + (_coachUser?.specialization ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),
+            SizedBox(height: 2),
+            TextButton(
+                onPressed: () {
+                  signOut();
+                },
+                child: Text('Sign out',
+                    style: TextStyle(
+                        color: Colors.red,
+                        decoration: TextDecoration.underline))),
+
             SizedBox(height: 20),
             // Text(
             //   personalProfile.description,
