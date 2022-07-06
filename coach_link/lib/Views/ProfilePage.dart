@@ -113,10 +113,13 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             Positioned(
               top: 0,
-              left: 0,
+              //height: 350,
+              width: 800,
+              left: -220,
+              bottom: 40,
               child: Image.asset(
                 "assets/banner.jpeg",
-                height: imageHeight,
+                height: 200,
                 fit: BoxFit.cover,
               ),
             ),
