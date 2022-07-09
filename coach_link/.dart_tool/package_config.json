@@ -200,6 +200,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "sqflite",
+      "rootUri": "file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-0.11.2+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "stack_trace",
       "rootUri": "file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0",
       "packageUri": "lib/",
@@ -216,6 +222,12 @@
       "rootUri": "file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "synchronized",
+      "rootUri": "file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/synchronized-2.2.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.8"
     },
     {
       "name": "term_glyph",
@@ -248,7 +260,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-07-09T02:48:07.970582Z",
+  "generated": "2022-07-09T23:05:54.880236Z",
   "generator": "pub",
   "generatorVersion": "2.17.5"
 }
