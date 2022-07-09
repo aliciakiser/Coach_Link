@@ -15,7 +15,7 @@ class _NewUserPageState extends State<NewUserPage> {
   String _lastName = "";
   String _password = "";
   String _confirmPassword = "";
-  String _specialization = "";
+  //String _specialization = "";
   ActionCodeSettings acs = ActionCodeSettings(
     handleCodeInApp: true,
     url: "package:coach_link/Web/index.html",
@@ -33,7 +33,7 @@ class _NewUserPageState extends State<NewUserPage> {
       final User? user = credential.user;
       if (user != null) {
         await UpdateUser(uid: user.uid)
-            .newProfile(_firstName, _lastName, _email, _specialization);
+            .newProfile(_firstName, _lastName, _email);
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Successfully created account, please login."),
         ));
@@ -113,23 +113,23 @@ class _NewUserPageState extends State<NewUserPage> {
                 },
               ),
             ),
-            const Text(
-              'Specialization',
-              textAlign: TextAlign.left,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Please Enter Your Specialization',
-                    hintText: 'Please enter your specialization'),
-                //controller: userNameController,
-                onChanged: (specialization) {
-                  this._specialization = specialization;
-                },
-              ),
-            ),
+            // const Text(
+            //   'Specialization',
+            //   textAlign: TextAlign.left,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 15),
+            //   child: TextField(
+            //     decoration: InputDecoration(
+            //         border: OutlineInputBorder(),
+            //         labelText: 'Please Enter Your Specialization',
+            //         hintText: 'Please enter your specialization'),
+            //     //controller: userNameController,
+            //     onChanged: (specialization) {
+            //       this._specialization = specialization;
+            //     },
+            //   ),
+            // ),
             const Text(
               'Password',
               textAlign: TextAlign.left,

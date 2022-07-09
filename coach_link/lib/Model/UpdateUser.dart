@@ -9,12 +9,12 @@ class UpdateUser {
   final CollectionReference _userCollection =
       FirebaseFirestore.instance.collection('users');
 
-  Future newProfile(
-      String firstName, String lastName, String email, String specialization,
+  Future newProfile(String firstName, String lastName, String email,
       {String location = "Ohio, Columbus",
       String phoneNum = "",
       int degree = 0,
-      bool workType = true}) async {
+      bool workType = true,
+      String specialization = ""}) async {
     return await _userCollection.doc(uid).set({
       'firstName': firstName,
       'lastName': lastName,

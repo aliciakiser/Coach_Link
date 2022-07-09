@@ -12,11 +12,11 @@ class UpdateProfilePage extends StatefulWidget {
 }
 
 class _UpdateProfilePageState extends State<UpdateProfilePage> {
-  String? _firstName = "";
-  String? _lastName = "";
-  String? _specialization = "";
-  String? _location = "";
-  String? _phoneNum = "";
+  TextEditingController _firstName = TextEditingController();
+  TextEditingController _lastName = TextEditingController();
+  TextEditingController _specialization = TextEditingController();
+  TextEditingController _location = TextEditingController();
+  TextEditingController _phoneNum = TextEditingController();
   String uid = "";
   String? _email = "";
   CoachUser? _coachUser;
@@ -32,14 +32,19 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   Future<void> _GetUserState() async {
     _coachUser = await UpdateUser(uid: uid).getCoach();
     _email = _coachUser?.email;
+    _firstName.text = _coachUser!.firstName;
+    _lastName.text = _coachUser!.lastName;
+    _specialization.text = _coachUser!.specialization;
+    _location.text = _coachUser!.location;
+    _phoneNum.text = _coachUser!.phoneNum;
     if (mounted) setState(() {});
   }
 
   void newUserAction() async {
     try {
       await UpdateUser(uid: uid).updateProfile(
-          _firstName!, _lastName!, _email!, _specialization!,
-          location: _location!, phoneNum: _phoneNum!);
+          _firstName.text, _lastName.text, _email!, _specialization.text,
+          location: _location.text, phoneNum: _phoneNum.text);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Successfully updated account."),
       ));
@@ -70,13 +75,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextFormField(
-                initialValue: _coachUser?.firstName,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
-                onChanged: (firstName) {
-                  this._firstName = firstName;
-                },
+                controller: _firstName,
               ),
             ),
             const Text(
@@ -86,13 +88,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextFormField(
-                initialValue: _coachUser?.lastName,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
-                onChanged: (lastName) {
-                  this._lastName = lastName;
-                },
+                controller: _lastName,
               ),
             ),
             const Text(
@@ -102,13 +101,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextFormField(
-                initialValue: _coachUser?.specialization,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
-                onChanged: (specialization) {
-                  this._specialization = specialization;
-                },
+                controller: _specialization,
               ),
             ),
             const Text(
@@ -118,13 +114,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextFormField(
-                initialValue: _coachUser?.location,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
-                onChanged: (location) {
-                  this._location = location;
-                },
+                controller: _location,
               ),
             ),
             const Text(
@@ -134,13 +127,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextFormField(
-                initialValue: _coachUser?.phoneNum,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                 ),
-                onChanged: (phoneNum) {
-                  this._phoneNum = phoneNum;
-                },
+                controller: _phoneNum,
               ),
             ),
             const SizedBox(
