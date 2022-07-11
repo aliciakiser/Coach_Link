@@ -119,9 +119,13 @@ source_span
 file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.2/
 file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.2/lib/
 sqflite
-2.0
-file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-0.11.2+4/
-file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-0.11.2+4/lib/
+2.10
+file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.3.2+4/
+file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.3.2+4/lib/
+sqflite_common
+2.7
+file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite_common-1.0.3+3/
+file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite_common-1.0.3+3/lib/
 stack_trace
 2.12
 file:///Users/boruzhu/Downloads/projects/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0/

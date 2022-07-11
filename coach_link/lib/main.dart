@@ -1,14 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'Views/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'Views/StartPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'CoachesDBHelperFunctions_sqlite.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await CoachesDBHelperFunctions.instance.database;
   runApp(const MyApp());
 }
 

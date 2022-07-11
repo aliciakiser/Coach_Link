@@ -1,8 +1,9 @@
 import 'dart:async';
-import 'package:coach_link/COachUser_sqlite.dart';
+import 'package:coach_link/Model/User.dart';
 import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CoachesDBHelperFunctions {
   static final _databaseName = "CoachUsers.db";
@@ -22,21 +23,74 @@ class CoachesDBHelperFunctions {
   static final CoachesDBHelperFunctions instance =
       CoachesDBHelperFunctions._privateConstructor();
 
+  final CollectionReference _userCollection =
+      FirebaseFirestore.instance.collection('users');
+
   // only have a single app-wide reference to the database
   static Database? _database;
   Future<Database> get database async => _database ??= await _initDatabase();
 
   // this opens the database (and creates it if it doesn't exist)
-  _initDatabase() async {
+  Future<Database> _initDatabase() async {
+    WidgetsFlutterBinding.ensureInitialized();
     String path = join(await getDatabasesPath(), _databaseName);
-    return await openDatabase(path,
+    Database temp = await openDatabase(path,
         version: _databaseVersion, onCreate: _onCreate);
+    //await sync();
+    return temp;
+  }
+
+  // void sync(){
+  //   _userCollection
+  //   .snapshots(includeMetadataChanges: true)
+  //   .listen((querySnapshot) {
+  //     for (var change in querySnapshot.docChanges) {
+  //       if (change.type == DocumentChangeType.added) {
+  //         final source =
+  //             (querySnapshot.metadata.isFromCache) ? "local cache" : "server";
+
+  //         print("Data fetched from $source}");
+  //       }
+  //     }
+  //   });
+  // }
+
+  Future<void> sync() async {
+    final db = await database;
+    db.rawDelete("DELETE * FROM $table");
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('users').get();
+    querySnapshot.docs.forEach((doc) {
+      insertUser(CoachUser(
+        uid: doc.id,
+        firstName: (doc.data() as dynamic)['firstName'],
+        lastName: (doc.data() as dynamic)['lastName'],
+        email: (doc.data() as dynamic)['email'],
+        specialization: (doc.data() as dynamic)['specialization'],
+        location: (doc.data() as dynamic)['location'],
+        phoneNum: (doc.data() as dynamic)['phoneNum'],
+        degree: (doc.data() as dynamic)['degree'],
+        workType: (doc.data() as dynamic)['workType'],
+      ));
+    });
   }
 
   Future _onCreate(Database db, int version) async {
     // Run the CREATE TABLE statement on the database.
     await db.execute(
-      'CREATE TABLE  USERS (UserID VARCHAR(10) NOT NULL, UserName VARCHAR(20) NOT NULL DEFAULT " ",EmailAddress VARCHAR(20) NOT NULL,Password VARCHAR(20) NOT NULL,PhoneNumber VARCHAR(10) NOT NULL,Location VARCHAR(50),Achievements ARRAY(99),Degree VARCHAR(10) NOT NULL,WorkType BOOLEAN DEFAULT 0,Field VARCHAR(10) NOT NULL,Specialty VARCHAR(10) NOT NULL,PRIMARY KEY(UserID))',
+      "CREATE TABLE USERS ("
+      "UserID TEXT NOT NULL, "
+      "FirstName TEXT NOT NULL, "
+      "LastName TEXT NOT NULL, "
+      "EmailAddress TEXT NOT NULL, "
+      "PhoneNumber TEXT, "
+      "Location TEXT, "
+      "Achievements TEXT, "
+      "Degree INTEGER NOT NULL, "
+      "WorkType BLOB DEFAULT 0, "
+      "Field TEXT NOT NULL, "
+      "Specialty TEXT, "
+      "PRIMARY KEY(UserID))",
     );
   }
 
@@ -56,25 +110,29 @@ class CoachesDBHelperFunctions {
     );
   }
 
-// A method that retrieves all the users from the users table.
-  Future<List<CoachUser>> users() async {
-    // Get a reference to the database.
+  Future<List<CoachUser>> search(String keyword) async {
     final db = await database;
-
-    // Query the table for all The Users.
-    final List<Map<String, dynamic>> maps = await db.query('users');
-
-    // Convert the List<Map<String, dynamic> into a List<CoachUsers>.
+    final List<Map<String, dynamic>> maps = await db.rawQuery(
+      'SELECT * FROM users WHERE '
+      'FirstName LIKE \'%$keyword%\' OR '
+      'LastName LIKE \'%$keyword%\' OR '
+      'EmailAddress LIKE \'%$keyword%\' OR '
+      'Field LIKE \'%$keyword%\' OR '
+      'Location LIKE \'%$keyword%\' OR '
+      'PhoneNumber LIKE \'%$keyword%\' OR '
+      'Specialty LIKE \'%$keyword%\'',
+    );
     return List.generate(maps.length, (i) {
       return CoachUser(
-        email: maps[i]['email'],
-        firstName: maps[i]['firstName'],
-        lastName: maps[i]['lastName'],
-        specialization: maps[i]['specialization'],
-        location: maps[i]['location'],
-        phoneNum: maps[i]['phoneNum'],
-        degree: maps[i]['degree'],
-        workType: maps[i]['workType'],
+        uid: maps[i]['UserID'],
+        email: maps[i]['EmailAddress'],
+        firstName: maps[i]['FirstName'],
+        lastName: maps[i]['LastName'],
+        specialization: maps[i]['Field'],
+        location: maps[i]['Location'],
+        phoneNum: maps[i]['PhoneNumber'],
+        degree: maps[i]['Degree'],
+        workType: maps[i]['WorkType'] == 1 ? true : false,
       );
     });
   }
@@ -82,15 +140,14 @@ class CoachesDBHelperFunctions {
   Future<void> updateUser(CoachUser user) async {
     // Get a reference to the database.
     final db = await database;
-
     // Update the given user.
     await db.update(
-      'user',
+      'USERS',
       user.toMap(),
       // Ensure that the user has a matching id.
-      where: 'email = ?',
+      where: 'UserID = ?',
       // Pass the user's id as a whereArg to prevent SQL injection.
-      whereArgs: [user.email],
+      whereArgs: [user.uid],
     );
   }
 
@@ -100,7 +157,7 @@ class CoachesDBHelperFunctions {
 
     // Remove the user from the database.
     await db.delete(
-      'users',
+      'USERS',
       // Use a `where` clause to delete a specific user.
       where: 'email = ?',
       // Pass the user's email as a whereArg to prevent SQL injection.
