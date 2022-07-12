@@ -4,6 +4,7 @@ import 'package:coach_link/CoachesDBHelperFunctions_sqlite.dart';
 
 class SearchMethod {
   static Future<List<CoachUser>> searchCoach(String keyword) async {
+    await CoachesDBHelperFunctions.instance.sync();
     List<CoachUser> coachList =
         await CoachesDBHelperFunctions.instance.search(keyword);
 

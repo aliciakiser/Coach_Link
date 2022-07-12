@@ -8,7 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CoachesDBHelperFunctions {
   static final _databaseName = "CoachUsers.db";
   static final _databaseVersion = 1;
-  static final table = 'Users_table';
+  static final table = 'USERS';
   static final firstName = 'firstName';
   static final lastName = 'lastName';
   static final email = 'email';
@@ -57,7 +57,7 @@ class CoachesDBHelperFunctions {
 
   Future<void> sync() async {
     final db = await database;
-    db.rawDelete("DELETE * FROM $table");
+    db.rawDelete("DELETE FROM $table");
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('users').get();
     querySnapshot.docs.forEach((doc) {

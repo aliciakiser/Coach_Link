@@ -50,7 +50,11 @@ class _SearchLandingPageState extends State<SearchLandingPage> {
               child: Text(user.firstName),
             ),
             title: Text(user.firstName + " " + user.lastName),
-            subtitle: Text("email: " + user.email),
+            subtitle: Text("email: " +
+                user.email +
+                "\n" +
+                "Specialization: " +
+                user.specialization),
           ),
           Container(
             padding: const EdgeInsets.all(16.0),
@@ -81,20 +85,29 @@ class _SearchLandingPageState extends State<SearchLandingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("Results for: " + keyword),
-      ),
-      body: Container(
+    Widget body;
+    if (coachList.length == 0) {
+      body = const Center(
+        child: Text("No results found"),
+      );
+    } else {
+      body = Container(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
             for (CoachUser user in coachList) _singlePostBody(user),
           ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      );
+    }
+    return Scaffold(
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text("Results for: " + keyword),
+      ),
+      body: body,
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
