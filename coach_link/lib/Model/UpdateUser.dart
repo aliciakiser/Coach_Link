@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'User.dart';
-import 'package:coach_link/CoachesDBHelperFunctions_sqlite.dart';
+import 'package:coach_link/Control/CoachesDBHelperFunctions_sqlite.dart';
 
 class UpdateUser {
   final String uid;

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coach_link/Model/User.dart';
-import 'package:coach_link/CoachesDBHelperFunctions_sqlite.dart';
+import 'package:coach_link/Control/CoachesDBHelperFunctions_sqlite.dart';
 
 class SearchMethod {
   static Future<List<CoachUser>> searchCoach(String keyword) async {

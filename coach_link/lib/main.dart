@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'Views/StartPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'CoachesDBHelperFunctions_sqlite.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coach_link/Control/CoachesDBHelperFunctions_sqlite.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
