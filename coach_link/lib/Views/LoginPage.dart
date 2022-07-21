@@ -1,6 +1,7 @@
 import 'StartPage.dart';
 import 'package:flutter/material.dart';
 import 'newProfile.dart';
+import 'onboarding.dart';
 import 'resetPassword.dart';
 import 'StartPage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   User? user;
 
   void loginAction() async {
+    //TODO: ADD LOGIC FOR CHECKING IF THEY HAVE DONE ONBOARDING
     try {
       final UserCredential credential = (await _auth.signInWithEmailAndPassword(
         email: _email,
@@ -42,9 +44,11 @@ class _LoginPageState extends State<LoginPage> {
         _success = true;
         print("Sign in success");
         print(user!.uid);
+        //TODO: need to add check to see if onbaording has been completed. If it has jump to the main page not onboarding.
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => StartPage(uid: user!.uid)),
+            MaterialPageRoute(
+                builder: (context) => OnboardingPage(uid: user!.uid)),
             (route) => route == null);
       });
     }
