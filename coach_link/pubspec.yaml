@@ -68,6 +68,7 @@ flutter:
   assets:
     - banner.jpeg
     - 19602.jpg
+    - football.jpg
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

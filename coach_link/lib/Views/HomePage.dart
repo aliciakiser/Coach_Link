@@ -1,3 +1,4 @@
+import 'package:coach_link/Views/PostDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -67,7 +68,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 TextButton(
                   child: Text('Read'.toUpperCase()),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const PostDetailPage(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
