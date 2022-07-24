@@ -1,3 +1,4 @@
+import 'package:coach_link/Views/newPost.dart';
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
 import 'ProfilePage.dart';
@@ -35,21 +36,60 @@ class _StartPageState extends State<StartPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: _bottomNavPages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        fixedColor: Colors.red,
-        items: [
-          BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-          BottomNavigationBarItem(label: "Search", icon: Icon(Icons.search)),
-          BottomNavigationBarItem(label: "Profile", icon: Icon(Icons.person)),
-        ],
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue,
+        child: Row(
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 0;
+                });
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.favorite),
+              onPressed: () {
+                setState(() {
+                  //_currentIndex = 0;
+                });
+              },
+            ),
+            const SizedBox(),
+            IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 1;
+                });
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.person),
+              onPressed: () {
+                setState(() {
+                  _currentIndex = 2;
+                });
+              },
+            ),
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        ),
+        shape: const CircularNotchedRectangle(),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => newPost(uid: uid),
+            ),
+          );
+        },
+        child: Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
