@@ -24,7 +24,7 @@ class _NewPostPageState extends State<newPost> {
   @override
   void initState() {
     super.initState();
-    postControl = NewPostControl(uid: uid);
+    postControl = NewPostControl(uid);
   }
 
   @override
@@ -78,7 +78,7 @@ class _NewPostPageState extends State<newPost> {
                   ),
                   decoration: InputDecoration(
                     //border: OutlineInputBorder(),
-                    labelText: "Title",
+                    hintText: "Title",
                   ),
                   onChanged: (String value) {
                     _title = value;

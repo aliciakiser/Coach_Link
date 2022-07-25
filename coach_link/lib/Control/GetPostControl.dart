@@ -18,17 +18,17 @@ class GetPost {
     List<CoachUser> coaches =
         await CoachesDBHelperFunctions.instance.findSimilarUser(user!);
     for (CoachUser coach in coaches) {
-      querySnapshot.docs.forEach((doc) async {
+      querySnapshot.docs.forEach((doc) {
         if (coach.uid == (doc.data() as dynamic)['uid'] &&
             ifNotInclude(posts, doc.id)) {
-          CoachUser? temp =
-              await UpdateUser(uid: (doc.data() as dynamic)['uid']).getCoach();
+          // CoachUser? temp =
+          //     await UpdateUser(uid: (doc.data() as dynamic)['uid']).getCoach();
           Post post = Post(
             id: doc.id,
             title: (doc.data() as dynamic)['title'],
             body: (doc.data() as dynamic)['content'],
             uid: (doc.data() as dynamic)['uid'],
-            userName: temp!.firstName + ' ' + temp.lastName,
+            userName: (doc.data() as dynamic)['userName'],
           );
           posts.add(post);
         }

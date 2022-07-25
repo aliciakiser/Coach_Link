@@ -23,26 +23,32 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  // ignore: no_logic_in_create_state
   State<MyHomePage> createState() => _MyHomePageState(uid: uid);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //Future? future;
   String uid = "";
-  List<Post>? _posts = [];
 
   _MyHomePageState({required this.uid});
+
+  Future<List<Post>> _refreshPosts() async {
+    // return Future.delayed(const Duration(seconds: 5), () {
+    //   return GetPost(uid: uid).getPosts();
+    // });
+    return GetPost(uid: uid).getPosts();
+  }
 
   @override
   void initState() {
     super.initState();
-    _refreshPosts();
   }
 
-  Future<void> _refreshPosts() async {
-    _posts = await GetPost(uid: uid).getPosts();
-    setState(() {});
-  }
+  // FutureBuilder<List<Post>> buildFutureBuilder() {
+  //   return new FutureBuilder<List<Post>>(builder: (context, AsyncSnapshot<List<Post>>){}
+  //   );
+
+  // }
 
   Widget _singlePostBody(Post post) {
     return Card(
@@ -73,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
               post.body,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.right,
+              textAlign: TextAlign.left,
               style: TextStyle(),
             ),
           ),
@@ -104,6 +110,15 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget bodyState(List<Post> posts) {
+    return ListView.builder(
+      itemCount: posts.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _singlePostBody(posts[index]);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -120,16 +135,17 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            if (_posts!.isNotEmpty)
-              for (int i = 0; i < _posts!.length; i++)
-                _singlePostBody(_posts![i])
-            else
-              const Center(
-                child: Text("No posts yet"),
-              ),
-          ],
+        child: FutureBuilder<List<Post>>(
+          future: _refreshPosts(),
+          builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return bodyState(snapshot.data!);
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

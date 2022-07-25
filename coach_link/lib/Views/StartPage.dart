@@ -24,11 +24,11 @@ class _StartPageState extends State<StartPage> {
   _StartPageState({required this.uid});
   @override
   void initState() {
-    super.initState();
     _bottomNavPages
       ..add(MyHomePage(title: "Home", uid: this.uid))
       ..add(const SearchPage())
       ..add(ProfilePage(uid: this.uid));
+    super.initState();
   }
 
   @override

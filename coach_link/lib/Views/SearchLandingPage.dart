@@ -23,7 +23,6 @@ class _SearchLandingPageState extends State<SearchLandingPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _getCoachList();
   }
