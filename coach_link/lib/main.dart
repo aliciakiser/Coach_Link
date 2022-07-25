@@ -14,6 +14,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await CoachesDBHelperFunctions.instance.database;
+  await CoachesDBHelperFunctions.instance.sync();
   runApp(const MyApp());
 }
 

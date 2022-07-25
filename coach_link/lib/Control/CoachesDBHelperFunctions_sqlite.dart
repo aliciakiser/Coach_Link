@@ -40,21 +40,6 @@ class CoachesDBHelperFunctions {
     return temp;
   }
 
-  // void sync(){
-  //   _userCollection
-  //   .snapshots(includeMetadataChanges: true)
-  //   .listen((querySnapshot) {
-  //     for (var change in querySnapshot.docChanges) {
-  //       if (change.type == DocumentChangeType.added) {
-  //         final source =
-  //             (querySnapshot.metadata.isFromCache) ? "local cache" : "server";
-
-  //         print("Data fetched from $source}");
-  //       }
-  //     }
-  //   });
-  // }
-
   Future<void> sync() async {
     final db = await database;
     db.rawDelete("DELETE FROM $table");
@@ -163,5 +148,12 @@ class CoachesDBHelperFunctions {
       // Pass the user's email as a whereArg to prevent SQL injection.
       whereArgs: [email],
     );
+  }
+
+  Future<List<CoachUser>> findSimilarUser(CoachUser user) async {
+    List<CoachUser> users = await search(user.specialization);
+    users.addAll(await search(user.location));
+    //users.removeWhere((CoachUser) => user.uid == CoachUser.uid);
+    return users;
   }
 }

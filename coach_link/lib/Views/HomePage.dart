@@ -1,6 +1,10 @@
+import 'package:coach_link/Model/User.dart';
 import 'package:coach_link/Views/PostDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:coach_link/Control/GetPostControl.dart';
+import 'package:coach_link/Model/Post.dart';
+import 'package:coach_link/Model/UpdateUser.dart';
 
 class MyHomePage extends StatefulWidget {
   String uid = "";
@@ -25,9 +29,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String uid = "";
+  List<Post>? _posts = [];
+
   _MyHomePageState({required this.uid});
 
-  Widget _singlePostBody(int postID) {
+  @override
+  void initState() {
+    super.initState();
+    _refreshPosts();
+  }
+
+  Future<void> _refreshPosts() async {
+    _posts = await GetPost(uid: uid).getPosts();
+    setState(() {});
+  }
+
+  Widget _singlePostBody(Post post) {
     return Card(
       child: Column(
         children: <Widget>[
@@ -45,18 +62,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           ListTile(
-            leading: CircleAvatar(
-                //backgroundImage: Image.asset('assets/images/image_1.jpg'),
-                ),
-            title: const Text("post title"),
-            subtitle: const Text("post author"),
+            leading: CircleAvatar(child: Text(post.userName.substring(0, 1))),
+            title: Text(post.title),
+            subtitle: Text(post.userName),
           ),
           Container(
+            alignment: Alignment.topLeft,
             padding: const EdgeInsets.all(16.0),
-            child: const Text(
-              "post description",
+            child: Text(
+              post.body,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.right,
+              style: TextStyle(),
             ),
           ),
           ButtonTheme(
@@ -104,9 +122,13 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            _singlePostBody(1),
-            _singlePostBody(2),
-            _singlePostBody(3)
+            if (_posts!.isNotEmpty)
+              for (int i = 0; i < _posts!.length; i++)
+                _singlePostBody(_posts![i])
+            else
+              const Center(
+                child: Text("No posts yet"),
+              ),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
