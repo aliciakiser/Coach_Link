@@ -96,8 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) =>
-                            const PostDetailPage(),
+                        builder: (BuildContext context) => PostDetailPage(
+                            title: post.title, description: post.body),
                       ),
                     );
                   },

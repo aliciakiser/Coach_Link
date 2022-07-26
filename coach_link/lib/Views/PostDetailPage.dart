@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
 class PostDetailPage extends StatelessWidget {
-  const PostDetailPage({Key? key}) : super(key: key);
+  final String title, description;
+  const PostDetailPage(
+      {Key? key, required this.title, required this.description})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Widget textSection = const Padding(
+    Widget textSection = Padding(
       padding: EdgeInsets.all(32),
       child: Text(
-        'Job Description',
+        description,
         softWrap: true,
       ),
     );
@@ -34,8 +37,8 @@ class PostDetailPage extends StatelessWidget {
                 /*2*/
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),
-                  child: const Text(
-                    'College Football Coach',
+                  child: Text(
+                    title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -65,7 +68,7 @@ class PostDetailPage extends StatelessWidget {
         body: ListView(
           children: [
             Image.asset(
-              'assets/football.jpg',
+              'assets/19602.jpg',
               width: 600,
               height: 240,
               fit: BoxFit.cover,
