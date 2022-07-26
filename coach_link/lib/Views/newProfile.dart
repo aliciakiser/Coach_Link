@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:coach_link/Model/UpdateUser.dart';
+import 'package:coach_link/Views/EmailVerifyPage.dart';
 
 class NewUserPage extends StatefulWidget {
   const NewUserPage({Key? key}) : super(key: key);
@@ -31,18 +32,20 @@ class _NewUserPageState extends State<NewUserPage> {
         password: _password,
       ));
       final User? user = credential.user;
-      if (user != null) {
-        await UpdateUser(uid: user.uid)
-            .newProfile(_firstName, _lastName, _email);
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("Successfully created account, please login."),
-        ));
-        Navigator.pop(context);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("Failed create account, please try again."),
-        ));
-      }
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => EmailVerifyPage()));
+      // if (user != null) {
+      //   await UpdateUser(uid: user.uid)
+      //       .newProfile(_firstName, _lastName, _email);
+      //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      //     content: Text("Successfully created account, please login."),
+      //   ));
+      //   Navigator.pop(context);
+      // } else {
+      //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      //     content: Text("Failed create account, please try again."),
+      //   ));
+      // }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Failed create account, please try again."),
@@ -56,7 +59,7 @@ class _NewUserPageState extends State<NewUserPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Reset Password"),
+        title: const Text("Create New Account"),
       ),
       body: SingleChildScrollView(
         child: Column(
