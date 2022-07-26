@@ -22,6 +22,18 @@ class _NewUserPageState extends State<NewUserPage> {
   );
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  var acs_email = ActionCodeSettings(
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
+      url: 'https://www.example.com/finishSignUp?cartId=1234',
+      // This must be true
+      handleCodeInApp: true,
+      iOSBundleId: 'com.example.ios',
+      androidPackageName: 'com.example.android',
+      // installIfNotAvailable
+      androidInstallApp: true,
+      // minimumVersion
+      androidMinimumVersion: '12');
 
   void newUserAction() async {
     try {
@@ -76,6 +88,14 @@ class _NewUserPageState extends State<NewUserPage> {
                 //controller: userNameController,
                 onChanged: (email) {
                   this._email = email;
+                  var emailAuth = email;
+                  FirebaseAuth.instance
+                      .sendSignInLinkToEmail(
+                          email: emailAuth, actionCodeSettings: acs_email)
+                      .catchError((onError) =>
+                          print('Error sending email verification $onError'))
+                      .then((value) =>
+                          print('Successfully sent email verification'));
                 },
               ),
             ),
