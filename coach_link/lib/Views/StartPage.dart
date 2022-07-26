@@ -4,6 +4,7 @@ import 'LoginPage.dart';
 import 'ProfilePage.dart';
 import "SearchPage.dart";
 import "HomePage.dart";
+import 'FavoritePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -26,6 +27,7 @@ class _StartPageState extends State<StartPage> {
   void initState() {
     _bottomNavPages
       ..add(MyHomePage(title: "Home", uid: this.uid))
+      ..add(FavoritePage(uid: this.uid))
       ..add(const SearchPage())
       ..add(ProfilePage(uid: this.uid));
     super.initState();
@@ -52,7 +54,7 @@ class _StartPageState extends State<StartPage> {
               icon: const Icon(Icons.favorite),
               onPressed: () {
                 setState(() {
-                  //_currentIndex = 0;
+                  _currentIndex = 1;
                 });
               },
             ),
@@ -61,7 +63,7 @@ class _StartPageState extends State<StartPage> {
               icon: const Icon(Icons.search),
               onPressed: () {
                 setState(() {
-                  _currentIndex = 1;
+                  _currentIndex = 2;
                 });
               },
             ),
@@ -69,7 +71,7 @@ class _StartPageState extends State<StartPage> {
               icon: const Icon(Icons.person),
               onPressed: () {
                 setState(() {
-                  _currentIndex = 2;
+                  _currentIndex = 3;
                 });
               },
             ),

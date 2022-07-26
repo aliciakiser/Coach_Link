@@ -152,8 +152,21 @@ class CoachesDBHelperFunctions {
 
   Future<List<CoachUser>> findSimilarUser(CoachUser user) async {
     List<CoachUser> users = await search(user.specialization);
-    users.addAll(await search(user.location));
-    //users.removeWhere((CoachUser) => user.uid == CoachUser.uid);
+    for (CoachUser c in await search(user.location)) {
+      if (!ifInclude(users, c.email)) {
+        users.add(c);
+      }
+    }
+    users.removeWhere((CoachUser) => user.uid == CoachUser.uid);
     return users;
+  }
+
+  static bool ifInclude(List<CoachUser> coachList, String email) {
+    for (CoachUser c in coachList) {
+      if (c.email == email) {
+        return true;
+      }
+    }
+    return false;
   }
 }
