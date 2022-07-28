@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
         await UpdateUser(uid: FirebaseAuth.instance.currentUser!.uid)
             .getCoach();
 
-    if (currentuser!.sport == "") {
+    if (currentuser.sport == "" || currentuser.sport == null) {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(

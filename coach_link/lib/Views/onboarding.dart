@@ -166,13 +166,13 @@ class _OnboardingPageState extends State<OnboardingPage>
               backgroundColor: Colors.blue,
             ),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => StartPage(
-                          uid: uid,
-                        )),
-              );
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => StartPage(
+                            uid: uid,
+                          )),
+                  (route) => route == null);
               UpdateUserInfo();
             },
             child: const Text('Go to App'),

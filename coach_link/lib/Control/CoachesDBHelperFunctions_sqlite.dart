@@ -180,7 +180,7 @@ class CoachesDBHelperFunctions {
         users.add(c);
       }
     }
-    users.removeWhere((CoachUser) => user.uid == CoachUser.uid);
+    // users.removeWhere((CoachUser) => user.uid == CoachUser.uid);
     return users;
   }
 

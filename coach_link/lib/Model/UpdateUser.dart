@@ -67,12 +67,7 @@ class UpdateUser {
       'location': location,
       'phoneNum': phoneNum,
       'degree': degree,
-      'degree_HighSchool': degree_HighSchool,
-      'degree_College': degree_College,
       'workType': workType,
-      'WorkExp': WorkExp,
-      'sport': sport,
-      'AwrdNAchv': AwrdNAchv,
     });
   }
 

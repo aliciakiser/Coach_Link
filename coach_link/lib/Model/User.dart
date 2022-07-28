@@ -23,12 +23,12 @@ class CoachUser {
     required this.location,
     required this.phoneNum,
     required this.degree,
-    required this.degree_HighSchool,
-    required this.degree_College,
+    this.degree_HighSchool = "",
+    this.degree_College = "",
     required this.workType,
-    required this.WorkExp,
-    required this.sport,
-    required this.AwrdNAchv,
+    this.WorkExp = "",
+    this.sport = "",
+    this.AwrdNAchv = "",
   });
   // Convert a User into a Map. The keys must correspond to the names of the
   // columns in the database.
