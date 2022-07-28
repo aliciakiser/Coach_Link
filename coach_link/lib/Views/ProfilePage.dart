@@ -149,42 +149,70 @@ class _ProfilePageState extends State<ProfilePage> {
                 Text(
                   _coachUser?.firstName ??
                       "" + " " + (_coachUser?.lastName ?? ""),
-                  style: TextStyle(fontSize: 18.0),
+                  style: TextStyle(fontSize: 30.0),
                 ),
               ],
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 10),
             Text(
-              "Email: " + (_coachUser?.email ?? ""),
+              "Email: ",
+              style: TextStyle(
+                  fontSize: 20.0, color: Color.fromARGB(255, 13, 13, 13)),
+            ),
+            Text(
+              (_coachUser?.email ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 6),
             Text(
-              "Address: " + (_coachUser?.location ?? ""),
+              "Address: ",
+              style: TextStyle(
+                  fontSize: 20.0, color: Color.fromARGB(255, 13, 13, 13)),
+            ),
+            Text(
+              (_coachUser?.location ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 6),
             Text(
-              "Specialization: " + (_coachUser?.specialization ?? ""),
+              "Specialization: ",
+              style: TextStyle(
+                  fontSize: 20.0, color: Color.fromARGB(255, 13, 13, 13)),
+            ),
+            Text(
+              (_coachUser?.specialization ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 6),
             Text(
-              "Awards & Achievement: " + (_coachUser?.AwrdNAchv ?? ""),
+              "Awards & Achievement: ",
+              style: TextStyle(
+                  fontSize: 20.0, color: Color.fromARGB(255, 13, 13, 13)),
+            ),
+            Text(
+              (_coachUser?.AwrdNAchv ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 6),
             Text(
-              "Coaching Experience: " + (_coachUser?.WorkExp ?? ""),
+              "Coaching Experience: ",
+              style: TextStyle(
+                  fontSize: 20.0, color: Color.fromARGB(255, 13, 13, 13)),
+            ),
+            Text(
+              (_coachUser?.WorkExp ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 6),
             Text(
-              "Degree: " +
-                  (_coachUser?.WorkExp ?? "") +
-                  "\n   - High School: " +
+              "Degree: ",
+              style: TextStyle(
+                  fontSize: 20.0, color: Color.fromARGB(255, 13, 13, 13)),
+            ),
+            Text(
+              "   - High School:\n      " +
                   (_coachUser?.degree_HighSchool ?? "") +
-                  "\n   - College: " +
+                  "\n   - College: \n      " +
                   (_coachUser?.degree_College ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),

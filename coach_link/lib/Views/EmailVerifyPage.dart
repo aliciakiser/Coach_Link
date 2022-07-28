@@ -62,6 +62,7 @@ class _EmailVerifyPageState extends State<EmailVerifyPage> {
           body: Center(
             child: Text(
               'Please verify your email.',
+              style: TextStyle(fontSize: 25),
               textAlign: TextAlign.center,
             ),
           ),
