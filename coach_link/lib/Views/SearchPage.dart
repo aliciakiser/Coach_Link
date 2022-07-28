@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'SearchLandingPage.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  String uid = "";
+  SearchPage({Key? key, required this.uid}) : super(key: key);
 
   @override
-  _SearchPageState createState() => _SearchPageState();
+  _SearchPageState createState() => _SearchPageState(uid: uid);
 }
 
 class _SearchPageState extends State<SearchPage> {
   String keyword = "";
+  String uid = "";
+
+  _SearchPageState({required this.uid});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +47,7 @@ class _SearchPageState extends State<SearchPage> {
                   MaterialPageRoute(
                     builder: (context) => SearchLandingPage(
                       keyword: keyword,
+                      uid: uid,
                     ),
                   ),
                 );

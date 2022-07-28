@@ -35,6 +35,7 @@ class UpdateUser {
       'phoneNum': phoneNum,
       'degree': degree,
       'workType': workType,
+      'friends': [],
     });
   }
 
@@ -66,7 +67,10 @@ class UpdateUser {
     });
   }
 
-  Future<CoachUser?> getCoach() {
+  Future<CoachUser> getCoach({String uid = ""}) async {
+    if (uid == "") {
+      uid = this.uid;
+    }
     return _userCollection.doc(uid).get().then((snapshot) {
       return CoachUser(
         uid: uid,
@@ -79,6 +83,40 @@ class UpdateUser {
         degree: (snapshot.data() as dynamic)['degree'],
         workType: (snapshot.data() as dynamic)['workType'],
       );
+    });
+  }
+
+  Future<List<String>> getFriends() async {
+    return _userCollection.doc(uid).get().then((snapshot) {
+      List<String> friends = [];
+      (snapshot.data() as dynamic)['friends'].forEach((friend) {
+        friends.add(friend);
+      });
+      return friends;
+    });
+  }
+
+  void addFriend(String friendUid) async {
+    if (await isFriend(friendUid)) {
+      return;
+    }
+    return _userCollection.doc(uid).update({
+      'friends': FieldValue.arrayUnion([friendUid]),
+    });
+  }
+
+  void removeFriend(String friendUid) async {
+    if (!await isFriend(friendUid)) {
+      return;
+    }
+    return _userCollection.doc(uid).update({
+      'friends': FieldValue.arrayRemove([friendUid]),
+    });
+  }
+
+  Future<bool> isFriend(String friendUid) {
+    return _userCollection.doc(uid).get().then((snapshot) {
+      return (snapshot.data() as dynamic)['friends'].contains(friendUid);
     });
   }
 }

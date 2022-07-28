@@ -28,7 +28,7 @@ class _StartPageState extends State<StartPage> {
     _bottomNavPages
       ..add(MyHomePage(title: "Home", uid: this.uid))
       ..add(FavoritePage(uid: this.uid))
-      ..add(const SearchPage())
+      ..add(SearchPage(uid: uid))
       ..add(ProfilePage(uid: this.uid));
     super.initState();
   }

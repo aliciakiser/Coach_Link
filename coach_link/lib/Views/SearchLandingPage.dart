@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:coach_link/Control/SearchMethod.dart';
 import 'package:coach_link/Model/User.dart';
+import 'package:coach_link/Model/UpdateUser.dart';
 
 class SearchLandingPage extends StatefulWidget {
   String keyword = "";
-  SearchLandingPage({Key? key, required this.keyword}) : super(key: key);
+  String uid = "";
+  SearchLandingPage({Key? key, required this.keyword, required this.uid})
+      : super(key: key);
   @override
   _SearchLandingPageState createState() =>
-      _SearchLandingPageState(keyword: keyword);
+      _SearchLandingPageState(keyword: keyword, uid: uid);
 }
 
 class _SearchLandingPageState extends State<SearchLandingPage> {
   String keyword = "";
+  String uid = "";
   List<CoachUser> coachList = [];
+  UpdateUser? updateUser;
 
-  _SearchLandingPageState({required this.keyword});
+  _SearchLandingPageState({required this.keyword, required this.uid});
 
   Future<void> _getCoachList() async {
     coachList = await SearchMethod.searchCoach(keyword);
@@ -23,8 +28,9 @@ class _SearchLandingPageState extends State<SearchLandingPage> {
 
   @override
   void initState() {
-    super.initState();
     _getCoachList();
+    updateUser = UpdateUser(uid: uid);
+    super.initState();
   }
 
   Widget _singlePostBody(CoachUser user) {
@@ -67,12 +73,16 @@ class _SearchLandingPageState extends State<SearchLandingPage> {
             child: ButtonBar(
               children: <Widget>[
                 TextButton(
-                  child: Text('Connect'.toUpperCase()),
-                  onPressed: () {},
+                  child: const Text("CONNECT"),
+                  onPressed: () {
+                    updateUser!.addFriend(user.uid);
+                  },
                 ),
                 TextButton(
-                  child: Text('Message'.toUpperCase()),
-                  onPressed: () {},
+                  child: Text('UNCONNECT'),
+                  onPressed: () {
+                    updateUser!.removeFriend(user.uid);
+                  },
                 ),
               ],
             ),

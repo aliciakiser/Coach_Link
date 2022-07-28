@@ -122,6 +122,29 @@ class CoachesDBHelperFunctions {
     });
   }
 
+  Future<CoachUser?> getUser(String uid) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      table,
+      where: 'UserID = ?',
+      whereArgs: [uid],
+    );
+    if (maps.length > 0) {
+      return CoachUser(
+        uid: maps.first['UserID'],
+        email: maps.first['EmailAddress'],
+        firstName: maps.first['FirstName'],
+        lastName: maps.first['LastName'],
+        specialization: maps.first['Field'],
+        location: maps.first['Location'],
+        phoneNum: maps.first['PhoneNumber'],
+        degree: maps.first['Degree'],
+        workType: maps.first['WorkType'] == 1 ? true : false,
+      );
+    }
+    return null;
+  }
+
   Future<void> updateUser(CoachUser user) async {
     // Get a reference to the database.
     final db = await database;

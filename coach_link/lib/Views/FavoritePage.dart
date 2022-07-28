@@ -15,20 +15,24 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
   String uid = "";
+  List<String> coachUids = [];
   List<CoachUser> coachList = [];
 
   _FavoritePageState({required this.uid});
 
   Future<void> _getCoachList() async {
-    CoachUser? user = await UpdateUser(uid: uid).getCoach();
-    coachList = await CoachesDBHelperFunctions.instance.findSimilarUser(user!);
+    coachUids = await UpdateUser(uid: uid).getFriends();
+    for (String uid in coachUids) {
+      CoachUser? user = await CoachesDBHelperFunctions.instance.getUser(uid);
+      coachList.add(user!);
+    }
     if (mounted) setState(() {});
   }
 
   @override
   void initState() {
-    super.initState();
     _getCoachList();
+    super.initState();
   }
 
   Widget _singlePostBody(CoachUser user) {
@@ -71,8 +75,10 @@ class _FavoritePageState extends State<FavoritePage> {
             child: ButtonBar(
               children: <Widget>[
                 TextButton(
-                  child: Text('Connect'.toUpperCase()),
-                  onPressed: () {},
+                  child: Text('DisConnect'.toUpperCase()),
+                  onPressed: () {
+                    UpdateUser(uid: uid).removeFriend(user.uid);
+                  },
                 ),
                 TextButton(
                   child: Text('Message'.toUpperCase()),
@@ -107,7 +113,7 @@ class _FavoritePageState extends State<FavoritePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text("Guess you might like"),
+        title: Text("My Favorite Coaches"),
       ),
       body: body,
       // This trailing comma makes auto-formatting nicer for build methods.
