@@ -61,7 +61,7 @@ class _EmailVerifyPageState extends State<EmailVerifyPage> {
       : Scaffold(
           body: Center(
             child: Text(
-              'Please verify your email...',
+              'Please verify your email.',
               textAlign: TextAlign.center,
             ),
           ),

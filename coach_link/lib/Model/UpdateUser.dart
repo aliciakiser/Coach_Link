@@ -13,8 +13,13 @@ class UpdateUser {
       {String location = "Ohio, Columbus",
       String phoneNum = "",
       int degree = 0,
+      String degree_HighSchool = "",
+      String degree_College = "",
       bool workType = true,
-      String specialization = ""}) async {
+      String specialization = "",
+      String WorkExp = "",
+      String sport = "",
+      String AwrdNAchv = ""}) async {
     return await _userCollection.doc(uid).set({
       'firstName': firstName,
       'lastName': lastName,
@@ -23,7 +28,12 @@ class UpdateUser {
       'location': location,
       'phoneNum': phoneNum,
       'degree': degree,
+      'degree_HighSchool': degree_HighSchool,
+      'degree_College': degree_College,
       'workType': workType,
+      'WorkExp': WorkExp,
+      'sport': sport,
+      'AwrdNAchv': AwrdNAchv,
     });
   }
 
@@ -32,7 +42,12 @@ class UpdateUser {
       {String location = "Ohio, Columbus",
       String phoneNum = "",
       int degree = 0,
-      bool workType = true}) async {
+      String degree_HighSchool = "",
+      String degree_College = "",
+      bool workType = true,
+      String WorkExp = "",
+      String sport = "",
+      String AwrdNAchv = ""}) async {
     return await _userCollection.doc(uid).update({
       'firstName': firstName,
       'lastName': lastName,
@@ -41,7 +56,12 @@ class UpdateUser {
       'location': location,
       'phoneNum': phoneNum,
       'degree': degree,
+      'degree_HighSchool': degree_HighSchool,
+      'degree_College': degree_College,
       'workType': workType,
+      'WorkExp': WorkExp,
+      'sport': sport,
+      'AwrdNAchv': AwrdNAchv,
     });
   }
 
@@ -55,7 +75,12 @@ class UpdateUser {
         location: (snapshot.data() as dynamic)['location'],
         phoneNum: (snapshot.data() as dynamic)['phoneNum'],
         degree: (snapshot.data() as dynamic)['degree'],
+        degree_HighSchool: (snapshot.data() as dynamic)['degree_HighSchool'],
+        degree_College: (snapshot.data() as dynamic)['degree_College'],
         workType: (snapshot.data() as dynamic)['workType'],
+        WorkExp: (snapshot.data() as dynamic)['WorkExp'],
+        sport: (snapshot.data() as dynamic)['sport'],
+        AwrdNAchv: (snapshot.data() as dynamic)['AwrdNAchv'],
       );
     });
   }

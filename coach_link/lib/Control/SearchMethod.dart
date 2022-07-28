@@ -10,15 +10,19 @@ class SearchMethod {
         .get();
     querySnapshotFirstName.docs.forEach((doc) {
       coachList.add(CoachUser(
-        firstName: (doc.data() as dynamic)['firstName'],
-        lastName: (doc.data() as dynamic)['lastName'],
-        email: (doc.data() as dynamic)['email'],
-        specialization: (doc.data() as dynamic)['specialization'],
-        location: (doc.data() as dynamic)['location'],
-        phoneNum: (doc.data() as dynamic)['phoneNum'],
-        degree: (doc.data() as dynamic)['degree'],
-        workType: (doc.data() as dynamic)['workType'],
-      ));
+          firstName: (doc.data() as dynamic)['firstName'],
+          lastName: (doc.data() as dynamic)['lastName'],
+          email: (doc.data() as dynamic)['email'],
+          specialization: (doc.data() as dynamic)['specialization'],
+          location: (doc.data() as dynamic)['location'],
+          phoneNum: (doc.data() as dynamic)['phoneNum'],
+          degree: (doc.data() as dynamic)['degree'],
+          degree_HighSchool: (doc.data() as dynamic)['degree_HighSchool'],
+          degree_College: (doc.data() as dynamic)['degree_College'],
+          workType: (doc.data() as dynamic)['workType'],
+          WorkExp: (doc.data() as dynamic)['WorkExp'],
+          sport: (doc.data() as dynamic)['sport'],
+          AwrdNAchv: (doc.data() as dynamic)['AwrdNAchv']));
     });
     QuerySnapshot querySnapshotLastName = await FirebaseFirestore.instance
         .collection('users')
@@ -34,7 +38,12 @@ class SearchMethod {
           location: (doc.data() as dynamic)['location'],
           phoneNum: (doc.data() as dynamic)['phoneNum'],
           degree: (doc.data() as dynamic)['degree'],
+          degree_HighSchool: (doc.data() as dynamic)['degree_HighSchool'],
+          degree_College: (doc.data() as dynamic)['degree_College'],
           workType: (doc.data() as dynamic)['workType'],
+          WorkExp: (doc.data() as dynamic)['WorkExp'],
+          sport: (doc.data() as dynamic)['sport'],
+          AwrdNAchv: (doc.data() as dynamic)['AwrdNAchv'],
         ));
       }
     });
@@ -52,7 +61,12 @@ class SearchMethod {
           location: (doc.data() as dynamic)['location'],
           phoneNum: (doc.data() as dynamic)['phoneNum'],
           degree: (doc.data() as dynamic)['degree'],
+          degree_HighSchool: (doc.data() as dynamic)['degree_HighSchool'],
+          degree_College: (doc.data() as dynamic)['degree_College'],
           workType: (doc.data() as dynamic)['workType'],
+          WorkExp: (doc.data() as dynamic)['WorkExp'],
+          sport: (doc.data() as dynamic)['sport'],
+          AwrdNAchv: (doc.data() as dynamic)['AwrdNAchv'],
         ));
       }
     });
@@ -70,7 +84,12 @@ class SearchMethod {
           location: (doc.data() as dynamic)['location'],
           phoneNum: (doc.data() as dynamic)['phoneNum'],
           degree: (doc.data() as dynamic)['degree'],
+          degree_HighSchool: (doc.data() as dynamic)['degree_HighSchool'],
           workType: (doc.data() as dynamic)['workType'],
+          degree_College: (doc.data() as dynamic)['degree_College'],
+          WorkExp: (doc.data() as dynamic)['WorkExp'],
+          sport: (doc.data() as dynamic)['sport'],
+          AwrdNAchv: (doc.data() as dynamic)['AwrdNAchv'],
         ));
       }
     });
