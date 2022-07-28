@@ -187,7 +187,7 @@ class _OnboardingPageState extends State<OnboardingPage>
         margin: const EdgeInsets.only(left: 20, right: 20),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
-            "What is your coaching specialty?",
+            "What sport are you interested in coaching?",
             style: const TextStyle(fontSize: 20, color: Colors.black),
             textAlign: TextAlign.center,
           ),
@@ -221,7 +221,7 @@ class _OnboardingPageState extends State<OnboardingPage>
         margin: const EdgeInsets.only(left: 20, right: 20),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
-            "What sport are you interested in coaching?",
+            "What is your coaching specialty?",
             style: const TextStyle(fontSize: 20, color: Colors.black),
             textAlign: TextAlign.center,
           ),
