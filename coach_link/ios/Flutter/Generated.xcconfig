@@ -1,8 +1,15 @@
 // This is a generated file; do not edit or check into version control.
+<<<<<<< HEAD
 FLUTTER_ROOT=/Users/boruzhu/Downloads/projects/flutter
 FLUTTER_APPLICATION_PATH=/Users/boruzhu/Documents/Coach_Link/coach_link
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=/Users/boruzhu/Documents/Coach_Link/coach_link/lib/main.dart
+=======
+FLUTTER_ROOT=/Users/lynn/Downloads/flutter
+FLUTTER_APPLICATION_PATH=/Users/lynn/Desktop/CSE 5915/Coach_Link/coach_link
+COCOAPODS_PARALLEL_CODE_SIGN=true
+FLUTTER_TARGET=/Users/lynn/Desktop/CSE 5915/Coach_Link/coach_link/lib/main.dart
+>>>>>>> origin/feature/onboarding
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
@@ -12,4 +19,8 @@ DART_OBFUSCATION=false
 EXTRA_FRONT_END_OPTIONS=--no-sound-null-safety
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
+<<<<<<< HEAD
 PACKAGE_CONFIG=/Users/boruzhu/Documents/Coach_Link/coach_link/.dart_tool/package_config.json
+=======
+PACKAGE_CONFIG=/Users/lynn/Desktop/CSE 5915/Coach_Link/coach_link/.dart_tool/package_config.json
+>>>>>>> origin/feature/onboarding

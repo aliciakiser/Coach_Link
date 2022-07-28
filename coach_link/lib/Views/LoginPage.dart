@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'StartPage.dart';
 import 'package:flutter/material.dart';
 import 'newProfile.dart';
+import 'onboarding.dart';
 import 'resetPassword.dart';
 import 'StartPage.dart';
+import 'HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:coach_link/Model/UpdateUser.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -19,6 +24,28 @@ class _LoginPageState extends State<LoginPage> {
   bool _success = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User? user;
+
+  Future<void> redirect() async {
+    final currentuser =
+        await UpdateUser(uid: FirebaseAuth.instance.currentUser!.uid)
+            .getCoach();
+
+    if (currentuser!.sport == "") {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  OnboardingPage(uid: FirebaseAuth.instance.currentUser!.uid)),
+          (route) => route == null);
+    } else {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  StartPage(uid: FirebaseAuth.instance.currentUser!.uid)),
+          (route) => route == null);
+    }
+  }
 
   void loginAction() async {
     try {
@@ -42,10 +69,8 @@ class _LoginPageState extends State<LoginPage> {
         _success = true;
         print("Sign in success");
         print(user!.uid);
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => StartPage(uid: user!.uid)),
-            (route) => route == null);
+        //TODO: need to add check to see if onbaording has been completed. If it has jump to the main page not onboarding.
+        redirect();
       });
     }
   }
@@ -71,7 +96,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Padding(
-              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(

@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
           AspectRatio(
             aspectRatio: 16 / 9,
             child: ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(4.0),
                 topRight: Radius.circular(4.0),
               ),
@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text("Coach Link"),
+        title: const Text("Coach Link"),
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),

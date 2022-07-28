@@ -14,6 +14,8 @@ class UpdateUser {
       {String location = "Ohio, Columbus",
       String phoneNum = "",
       int degree = 0,
+      String degree_HighSchool = "",
+      String degree_College = "",
       bool workType = true,
       String specialization = ""}) async {
     await CoachesDBHelperFunctions.instance.insertUser(CoachUser(
@@ -34,6 +36,8 @@ class UpdateUser {
       'location': location,
       'phoneNum': phoneNum,
       'degree': degree,
+      'degree_HighSchool': degree_HighSchool,
+      'degree_College': degree_College,
       'workType': workType,
       'friends': [],
     });
@@ -63,7 +67,12 @@ class UpdateUser {
       'location': location,
       'phoneNum': phoneNum,
       'degree': degree,
+      'degree_HighSchool': degree_HighSchool,
+      'degree_College': degree_College,
       'workType': workType,
+      'WorkExp': WorkExp,
+      'sport': sport,
+      'AwrdNAchv': AwrdNAchv,
     });
   }
 
@@ -81,7 +90,12 @@ class UpdateUser {
         location: (snapshot.data() as dynamic)['location'],
         phoneNum: (snapshot.data() as dynamic)['phoneNum'],
         degree: (snapshot.data() as dynamic)['degree'],
+        degree_HighSchool: (snapshot.data() as dynamic)['degree_HighSchool'],
+        degree_College: (snapshot.data() as dynamic)['degree_College'],
         workType: (snapshot.data() as dynamic)['workType'],
+        WorkExp: (snapshot.data() as dynamic)['WorkExp'],
+        sport: (snapshot.data() as dynamic)['sport'],
+        AwrdNAchv: (snapshot.data() as dynamic)['AwrdNAchv'],
       );
     });
   }
