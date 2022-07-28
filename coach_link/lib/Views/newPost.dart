@@ -77,6 +77,7 @@ class _NewPostPageState extends State<newPost> {
                     color: Colors.grey,
                   ),
                   decoration: InputDecoration(
+                    isDense: true,
                     //border: OutlineInputBorder(),
                     hintText: "Title",
                   ),
