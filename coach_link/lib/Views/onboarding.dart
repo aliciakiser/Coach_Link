@@ -6,9 +6,6 @@ import 'package:coach_link/Model/UpdateUser.dart';
 import 'package:coach_link/Model/User.dart';
 
 class OnboardingPage extends StatefulWidget {
-  // final FirebaseAuth auth = FirebaseAuth.instance;
-
-  // final uid = FirebaseAuth.instance.currentUser.uid;
   String uid = "";
   OnboardingPage({Key? key, required this.uid}) : super(key: key);
 
@@ -112,25 +109,11 @@ class _OnboardingPageState extends State<OnboardingPage>
               controller: tabController,
               children: <Widget>[
                 _createInitialPage(),
-                // _createPageDropdown(
-                //     "What sport are you interested in coaching?",
-                //     _createDropdown(sports_List, "Football", "sports"))
                 _sports_page(),
-                // _createPageDropdown(
-                //     "What is your coaching specialty?",
-                //     _createDropdown(
-                //         specializations_List, "Head coach", "specializations")),
                 _specializations_page(),
-                //_createPageFillInBlank("What coaching experience do you have?"),
                 _WorkExp_page(),
-                // _createPageFillInBlank(
-                //     "Do you have any awards and achievements you would like to list?"),
                 _AwrdNAchv_page(),
-                //_createPageFillInBlank("What degree did you get?"),
                 _degree_page(),
-                // _createPageFillInBlank("What High School did you attend?"),
-                // _createPageFillInBlank("What college did you attend?"),
-                //_createPageFillInBlank("What is your current location?"),
                 _location_page(),
                 _createFinishedPage(),
               ],
@@ -368,61 +351,4 @@ class _OnboardingPageState extends State<OnboardingPage>
       ),
     );
   }
-
-  // Container _createPageDropdown(
-  //     String question, DropdownButton<String> dropdown) {
-  //   return Container(
-  //     margin: const EdgeInsets.only(left: 20, right: 20),
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: [
-  //         Text(
-  //           question,
-  //           style: const TextStyle(fontSize: 20, color: Colors.black),
-  //           textAlign: TextAlign.center,
-  //         ),
-  //         const SizedBox(height: 30),
-  //         SizedBox(width: 240, child: dropdown),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Container _createPageFillInBlank(String question) {
-  //   return Container(
-  //     margin: const EdgeInsets.only(left: 20, right: 20),
-  //     child: Column(
-  //       mainAxisAlignment: MainAxisAlignment.center,
-  //       children: [
-  //         Text(question,
-  //             style: const TextStyle(fontSize: 20, color: Colors.black)),
-  //         const SizedBox(height: 30),
-  //         const TextField(
-  //           keyboardType: TextInputType.multiline,
-  //           maxLines: null,
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // DropdownButton<String> _createDropdown(
-  //     List<DropdownMenuItem<String>>? options,
-  //     String startingValue,
-  //     String Changed_attribute) {
-  //   String sValue = startingValue;
-  //   return DropdownButton<String>(
-  //       value: startingValue,
-  //       icon: const Icon(Icons.arrow_downward),
-  //       elevation: 16,
-  //       style: const TextStyle(color: Colors.black),
-  //       onChanged: (String? newValue) {
-  //         setState(() {
-  //           sValue = newValue!;
-  //         });
-  //         //Update();
-  //         print(newValue);
-  //       },
-  //       items: options);
-  // }
 }

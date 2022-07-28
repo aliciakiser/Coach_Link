@@ -153,19 +153,39 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-            SizedBox(height: 2),
+            SizedBox(height: 4),
             Text(
               "Email: " + (_coachUser?.email ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),
-            SizedBox(height: 2),
+            SizedBox(height: 4),
             Text(
               "Address: " + (_coachUser?.location ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),
-            SizedBox(height: 2),
+            SizedBox(height: 4),
             Text(
               "Specialization: " + (_coachUser?.specialization ?? ""),
+              style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
+            ),
+            SizedBox(height: 4),
+            Text(
+              "Awards & Achievement: " + (_coachUser?.AwrdNAchv ?? ""),
+              style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
+            ),
+            SizedBox(height: 4),
+            Text(
+              "Coaching Experience: " + (_coachUser?.WorkExp ?? ""),
+              style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
+            ),
+            SizedBox(height: 4),
+            Text(
+              "Degree: " +
+                  (_coachUser?.WorkExp ?? "") +
+                  "\n   - High School: " +
+                  (_coachUser?.degree_HighSchool ?? "") +
+                  "\n   - College: " +
+                  (_coachUser?.degree_College ?? ""),
               style: TextStyle(fontSize: 15.0, color: Colors.grey[700]),
             ),
             SizedBox(height: 20),

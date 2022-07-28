@@ -111,7 +111,6 @@ class _NewUserPageState extends State<NewUserPage> {
                     border: OutlineInputBorder(),
                     labelText: 'Please Enter Your Last Name',
                     hintText: 'Please enter your last name'),
-                //controller: userNameController,
                 onChanged: (lastName) {
                   this._lastName = lastName;
                 },
@@ -129,7 +128,6 @@ class _NewUserPageState extends State<NewUserPage> {
                     labelText: 'Please Enter Your Password',
                     hintText:
                         'Please enter your password, it should more than 8 characters including at least one special character and one number'),
-                //controller: userNameController,
                 onChanged: (password) {
                   this._password = password;
                 },

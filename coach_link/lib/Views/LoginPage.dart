@@ -48,7 +48,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void loginAction() async {
-    //TODO: ADD LOGIC FOR CHECKING IF THEY HAVE DONE ONBOARDING
     try {
       final UserCredential credential = (await _auth.signInWithEmailAndPassword(
         email: _email,
@@ -97,7 +96,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Padding(
-              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 decoration: InputDecoration(
