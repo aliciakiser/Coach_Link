@@ -56,7 +56,7 @@ class _NewUserPageState extends State<NewUserPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Reset Password"),
+        title: const Text("Create a Profile"),
       ),
       body: SingleChildScrollView(
         child: Column(
