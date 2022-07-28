@@ -64,6 +64,12 @@ class PostDetailPage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Post Description'),
+          leading: IconButton(
+            icon: const Icon(Icons.chevron_left),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
         body: ListView(
           children: [
